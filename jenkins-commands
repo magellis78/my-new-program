@@ -1,0 +1,27 @@
+yum install java-1.8* -y 
+java -version
+sudo wget -O /etc/yum.repos.d/jenkins.repo     https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo yum upgrade
+sudo yum install jenkins
+sudo systemctl daemon-reload
+service jenkins start
+systemctl enable jenkins
+
+mvn archetype:generate -DgroupId=com.sample.webproject -DartifactId=my-new-program -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+cd my-new-program/
+git init
+git status
+git add src/ pom.xml
+git status
+git config --global user.email "***************"
+git config --global user.name "*********"
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/vikas99341/my-new-program.git
+git push -u origin main
+
+mvn --version
+
+cd /var/lib/jenkins/workspace/my-maven-project
+cd target/
